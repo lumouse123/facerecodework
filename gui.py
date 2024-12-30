@@ -4,10 +4,8 @@ import newfacefile
 import main2
 from PIL import Image, ImageTk
 from tkinter import filedialog
-from tkinter import ttk
 import tkinter as tk
 from PIL import Image, ImageTk
-from tkinter import ttk
 
 
 def on_button_click(old_file_path):
