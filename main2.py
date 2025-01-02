@@ -12,7 +12,9 @@ def initialize_camera():
         print("Error: Could not open camera.")
         exit()
     classifier = cv2.CascadeClassifier(
-        "E:/conda/envs/py310/Lib/site-packages/cv2/data/haarcascade_frontalface_alt2.xml"
+        "haarcascade_frontalface_alt2.xml"
+        #  "E:/conda/envs/py310/Lib/site-packages/cv2/data/haarcascade_frontalface_alt2.xml"
+
     )  # 加载分类器
     return cap, classifier, window_name
 
@@ -38,15 +40,16 @@ def main2():
         if not ok:
             print("Error: Failed to capture image.")
             break
-
         # 处理当前帧并更新 num
         num = process_frame(frame, classifier, num, max_num, color)
 
         # 只在每个循环周期结束后显示捕捉到的帧
         cv2.imshow(window_name, frame)
-
-        # 等待按键处理：如果按下 'Esc' 键退出
+        
         c = cv2.waitKey(10)  # 等待 10ms
+        if cv2.getWindowProperty(window_name, cv2.WND_PROP_VISIBLE) < 1:#如果窗口被关闭
+            break
+        # 等待按键处理：如果按下 'Esc' 键退出
         if c & 0xFF == 27:  # 按下 'Esc' 键退出
             break
 
